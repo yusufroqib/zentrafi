@@ -468,6 +468,8 @@ export function useTokenLock() {
               unlockDate,
               description,
             ],
+            gas: BigInt(3000000)
+            
           });
 
           setCurrentTxHash(hash);
@@ -574,6 +576,8 @@ export function useTokenLock() {
               cycleBps,
               description,
             ],
+            gas: BigInt(3000000)
+
           });
 
           setCurrentTxHash(hash);
