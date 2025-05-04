@@ -1,6 +1,6 @@
 // import { jsonRpcProvider } from "@/lib/provider";
 import { getEthersProvider, getEthersSigner } from "@/providers/ethers";
-import { config } from "@/providers/Wagmi";
+import { config } from "@/providers/xWagmi";
 import { JsonRpcProvider } from "ethers";
 import { useEffect, useState } from "react";
 import { useAccount } from "wagmi";

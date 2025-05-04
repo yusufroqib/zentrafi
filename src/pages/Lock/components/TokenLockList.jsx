@@ -24,7 +24,7 @@ import {
   LayoutList,
 } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
-import { config } from "@/providers/wagmi";
+import { config } from "@/providers/xWagmi";
 import { useAccount, useChainId } from "wagmi";
 import { formatUnits } from "viem";
 import { erc20Abi } from "@/utils/ABI";

@@ -14,7 +14,7 @@ import { useLaunchPool } from "@/hooks/useLaunchPool";
 import truncateWalletAddress from "@/lib/truncateWalletAddress";
 import { useAccount } from "wagmi";
 import { waitForTransaction } from "@wagmi/core";
-import { config } from "@/providers/Wagmi";
+import { config } from "@/providers/xWagmi";
 
 export default function FairLaunchReviewStep() {
 	const { address } = useAccount();

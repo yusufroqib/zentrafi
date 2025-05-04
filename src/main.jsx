@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App.jsx";
 import "@rainbow-me/rainbowkit/styles.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { WagmiConfigProvider } from "@/providers/Wagmi.jsx";
+import { WagmiConfigProvider } from "@/providers/xWagmi.jsx";
 import RootLayout from "./layouts/Layout.jsx";
 import { Bounce, ToastContainer } from "react-toastify";
 import "chartjs-adapter-date-fns";
