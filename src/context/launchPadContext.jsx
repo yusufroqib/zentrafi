@@ -12,7 +12,7 @@ import useEthersProvider from "@/hooks/useEthersProvider";
 import {
 	POOL_MANAGER_ABI,
 	PHAROS_POOL_MANAGER_ADDRESS,
-} from "@/utils/ABI/PoolManager";
+} from "@/utils/ABI/PoolManager/zindex";
 
 import { useAccount } from "wagmi";
 import { BONDING_POOL_ABI } from "@/utils/ABI/BondingPool";
