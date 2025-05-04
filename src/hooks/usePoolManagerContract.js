@@ -4,7 +4,7 @@ import useEthersProvider from "./useEthersProvider";
 import {
     POOL_MANAGER_ABI,
     PHAROS_POOL_MANAGER_ADDRESS,
-} from "@/utils/ABI/PoolManager/zindex";
+} from "@/utils/ABI/PoolManager";
 
 const usePoolFactoryContract = (withSigner = false) => {
     const { readOnlyProvider, signer } = useEthersProvider();
