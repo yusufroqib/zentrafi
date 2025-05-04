@@ -15,7 +15,7 @@ import {
 } from "@/utils/ABI/Airdrop";
 import { erc20Abi } from "@/utils/ABI";
 import { toast } from "react-toastify";
-import { config } from "@/providers/xWagmi";
+import { config } from "@/providers/wagmi";
 
 export function useTokenAirdrop() {
   const { address } = useAccount();

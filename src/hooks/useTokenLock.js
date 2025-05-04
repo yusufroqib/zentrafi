@@ -10,7 +10,7 @@ import { readContract, waitForTransaction, multicall } from "@wagmi/core";
 import { parseUnits } from "viem";
 import { erc20Abi } from "@/utils/ABI";
 import { toast } from "react-toastify";
-import { config } from "@/providers/xWagmi";
+import { config } from "@/providers/wagmi";
 import {
   TOKEN_LOCKER_ADDRESSES,
   FACTORY_ABI,

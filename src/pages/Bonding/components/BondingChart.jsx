@@ -25,7 +25,7 @@ import { useBondingContract } from "@/hooks/useBondingContract";
 import { parseUnits } from "viem";
 import { toast } from "react-toastify";
 import axios from "axios";
-import { config } from "@/providers/xWagmi";
+import { config } from "@/providers/wagmi";
 import { getBalance } from "@wagmi/core";
 import useEthersProvider from "@/hooks/useEthersProvider";
 import {
