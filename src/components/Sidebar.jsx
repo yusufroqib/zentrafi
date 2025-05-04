@@ -58,7 +58,9 @@ function Header() {
 		<header className="sticky top-0 z-50 border-b border-[#97CBDC]/30 bg-[#004581] bg-opacity-95 backdrop-blur-md">
 			<div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
 				<div className="flex justify-between space-x-6">
-					<ZentraLogo showTagline={false} size="xs" />
+					<Link to="/">
+						<ZentraLogo showTagline={false} size="xs" />
+					</Link>
 
 					<nav className="hidden md:block">
 						<ul className="flex space-x-1">
