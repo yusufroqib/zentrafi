@@ -17,7 +17,8 @@ import { Label } from "@/components/ui/label";
 import axios from "axios";
 
 export function FairLaunchEditModal({ token, onSubmit }) {
-  const [open, setOpen] = useState(false);
+  const [openFake, setOpen] = useState(false);
+  const open = false
   const [formData, setFormData] = useState({
     poolLogoUrl: token?.icon || "",
     poolBannerUrl: token?.bannerImage || "",
@@ -224,9 +225,9 @@ export function FairLaunchEditModal({ token, onSubmit }) {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
+      <DialogTrigger  asChild>
         <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-          <Button className="bg-gradient-to-r cursor-pointer from-[#004581] to-[#018ABD] hover:from-[#003b6e] hover:to-[#0179a3] text-white rounded-xl h-12 shadow-lg shadow-[#004581]/20 transition-all duration-200 font-medium flex items-center gap-2">
+          <Button disabled className="bg-gradient-to-r cursor-pointer from-[#004581] to-[#018ABD] hover:from-[#003b6e] hover:to-[#0179a3] text-white rounded-xl h-12 shadow-lg shadow-[#004581]/20 transition-all duration-200 font-medium flex items-center gap-2">
             <Edit className="h-4 w-4" />
             Edit Launch
           </Button>

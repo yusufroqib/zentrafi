@@ -373,7 +373,7 @@ function FairLaunchViewPage() {
 						</div>
 
 						<div className="flex gap-3 mt-4 md:mt-0">
-							<FairLaunchEditModal token={token} onSubmit={handleEditSubmit} />
+							<FairLaunchEditModal  token={token} onSubmit={handleEditSubmit} />
 
 							<motion.div
 								whileHover={{ scale: 1.02 }}
