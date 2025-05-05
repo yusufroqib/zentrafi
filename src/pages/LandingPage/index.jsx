@@ -851,7 +851,7 @@ export default function LandingPage() {
                       <div className="absolute -inset-0.5 bg-gradient-to-r from-[#004581] to-[#018ABD] rounded-2xl blur opacity-30"></div>
                       <div className="relative bg-[#1D2538]/40 backdrop-blur-sm border border-[#475B74]/50 rounded-2xl overflow-hidden shadow-xl">
                         <img
-                          src="/placeholder.svg?height=500&width=600&text=Zentra+Swap+Interface"
+                          src="/zentraswap.png"
                           alt="Zentra Swap Interface"
                           width={600}
                           height={500}
