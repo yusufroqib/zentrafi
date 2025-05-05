@@ -375,7 +375,7 @@ export default function LandingPage() {
 
                 <Button className="border-[#475B74] text-center border bg-inherit cursor-pointer text-white hover:bg-black/50 rounded-xl h-14 px-8 transition-all duration-200 text-lg font-medium">
                   <Link
-                    to={"https://swap-swap-liart.vercel.app/#/swap"}
+                    to={"https://swap-swap-liart.vercel.app/#/?intro=true"}
                     target="_blank"
                     variant="outline"
                     className="cursor-pointer"
@@ -825,7 +825,7 @@ export default function LandingPage() {
 
                     <Button className="bg-gradient-to-r cursor-pointer from-[#004581] to-[#018ABD] hover:from-[#003b6e] hover:to-[#0179a3] text-white rounded-xl h-12 px-6 shadow-lg shadow-[#004581]/20 transition-all duration-200 font-medium">
                       <Link
-                        to={"https://swap-swap-liart.vercel.app/#/swap"}
+                        to={"https://swap-swap-liart.vercel.app/#/?intro=true"}
                         target="_blank"
                         className="flex items-center cursor-pointer"
                       >
