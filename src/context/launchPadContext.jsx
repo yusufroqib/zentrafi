@@ -57,8 +57,28 @@ export const LaunchPadContextProvider = ({ children }) => {
 		try {
 			const allFairPools = await readOnlyPoolManagerContract.getAllFairPools();
 			// console.log({allFairPools})
-			const allBondingPools =
+			let allBondingPools =
 				await readOnlyPoolManagerContract.getAllBondingPools();
+				console.log({allBondingPools})
+			const poolsToRemove = [
+				"0x08bED05F54933c368a7Ea08F27a25A3D742BA227",
+				"0x3B62691202236aB19ABB9774769738a9c3f06b14",
+				"0x0E073Eb23B4F131941eCdcCCf5079fe26EbD28d2",
+				"0xb1557C8D7B4cc625686c78E115729Ba2104535A9",
+				"0x87385d97484137BcE6E0A5F8E11395744f91E5B2",
+				"0x6A6a64c66eBC04941ECc6aaE83a816d900035f04",
+				"0xCBDAE3eFeDb99F6E72b4764eB6c33768EAA39264",
+				"0xc2A79CB3724f2269640AE3949b16e98F8811BC9e",
+				"0x1eCD1764B97A1655e8ca807eaAF9bd1d78936FC2",
+				"0xf4A10d06E90CC8C58Cef5CD11A1210D9822b0252",
+				"0x5b2d014903e9fb18ef453BFeA76943dA3b5d4871",
+				"0x421954410c1c2486C11A8a1C9c081C3fae953010",
+				"0xc63476CC32443Ae4F802BD6D0be25ACe92fD3E09",
+				"0x2711AF311130787A8E9537E8DBb6b2D7aE15F6e6",
+			];
+			allBondingPools = allBondingPools.filter(
+				(pool) => !poolsToRemove.includes(pool)
+			);
 
 			const fairPoolItfCalls = allFairPools.map((_address) => ({
 				target: _address,
