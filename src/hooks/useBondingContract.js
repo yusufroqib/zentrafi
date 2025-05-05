@@ -119,6 +119,12 @@ export function useBondingContract(contractAddress) {
     functionName: "ethAmount",
     enabled: shouldFetch && isValidAddress,
   });
+  const tokenAAmount = useReadContract({
+    address: isValidAddress ? contractAddress : undefined,
+    abi: BONDING_POOL_ABI,
+    functionName: "tokenAAmount",
+    enabled: shouldFetch && isValidAddress,
+  });
 
   // Function to check token allowance
   const checkAllowance = useCallback(
@@ -514,31 +520,36 @@ export function useBondingContract(contractAddress) {
 
         // Calculate market cap using token price
         const fetchPriceAndCalculateMarketCap = async () => {
+          console.log({contractAddress})
           try {
             const ethPriceData = await fetchEthPrice();
             const decimalValue = Number(decimals.data || 18);
             const ethAmountValue = ethAmount.data
               ? BigInt(ethAmount.data.toString())
               : BigInt(0);
-            const tokenAmountValue = circulatingSupply.data
-              ? BigInt(circulatingSupply.data.toString())
+            const tokenAAmountValue = tokenAAmount.data
+              ? BigInt(tokenAAmount.data.toString())
               : BigInt(0);
-
-            // Calculate using the formula from the contract
+         
+// console.log("ethAmountValue", ethAmount.data)
+            // Calculate using the formula from the contract 
             // currentRate = (ethAmount * ethPrice) / (tokenAAmount * (10 ** (18 - tokenDecimals)))
             let currentRate = 0;
-            if (ethAmountValue > 0 && tokenAmountValue > 0) {
+            if (ethAmountValue > 0 && tokenAAmountValue > 0) {
               currentRate =
                 (Number(ethAmountValue) * Number(ethPriceData.price)) /
                 10 ** Number(ethPriceData.decimal) /
-                (Number(tokenAmountValue) / 10 ** (18 - decimalValue));
+                (Number(tokenAAmountValue) * 10 ** (18 - decimalValue));
             }
 
-            // Calculate market cap
-            const marketCapValue = currentRate * Number(formattedSupply);
+            console.log({currentRate})
 
+            // Calculate market cap
+            const marketCapValue = currentRate * (Number(circulatingSupply.data)/ 10 ** decimalValue);
+// console.log("Supply data", circulatingSupply.data)
+console.log({marketCapValue})
             // Calculate progress towards target market cap
-            const targetMarketCap = poolInfoData?.marketCap || 69000;
+            const targetMarketCap = poolInfoData?.marketCap || 6900;
             const progress = Math.min(
               100,
               Math.floor((marketCapValue / targetMarketCap) * 100)

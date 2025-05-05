@@ -48,7 +48,7 @@ function formatNumber(num) {
 	} else if (realNumber >= 1000) {
 		return (realNumber / 1000).toFixed(2) + "K";
 	} else {
-		return realNumber.toFixed(2);
+		return Number(realNumber).toFixed(2);
 	}
 }
 
@@ -600,7 +600,7 @@ export function BondingTradingChart({
 		}
 
 		try {
-			console.log("before")
+			// console.log("before")
 			const bondingPoolContract = new Contract(
 				PHAROS_BONDING_CONTRACT_ADDRESS,
 				BONDING_POOL_ABI,
@@ -632,7 +632,7 @@ export function BondingTradingChart({
 						swapType,
 						proofHex,
 					]);
-					console.log("after")
+					// console.log("after")
 			//     // // Estimate gas
 			// const gasEstimate = await readOnlyProvider.estimateGas({
 			// 	from: address,

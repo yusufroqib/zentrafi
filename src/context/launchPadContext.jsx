@@ -228,16 +228,17 @@ export const LaunchPadContextProvider = ({ children }) => {
 						(Number(ethAmount) * Number(pairPrice)) /
 						Number(10 ** pairDecimal) /
 						(Number(tokenAAmount) * Number(10 ** (18 - tokenDecimals)));
-					console.log({ currentRate });
-					console.log(
-						"circulatingSupply",
-						Number(circulatingSupply),
-						"tokenDecimals",
-						tokenDecimals
-					);
+					// console.log({ ethAmountValue: Number(ethAmount) });
+					// console.log({ currentRate });
+					// console.log(
+					// 	"circulatingSupply",
+					// 	Number(circulatingSupply),
+					// 	"tokenDecimals",
+					// 	tokenDecimals
+					// );
 					const currentMarketCap =
 						currentRate * (Number(circulatingSupply) / 10 ** tokenDecimals);
-					// console.log({ currentMarketCap });
+					console.log({ currentMarketCap });
 					const poolState = bondingPools[1][0];
 					const status = Number(poolState) === 0 ? "LIVE" : "COMPLETED";
 					// console.log({ poolState });
