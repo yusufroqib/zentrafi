@@ -9,13 +9,14 @@ import RootLayout from "./layouts/Layout.jsx";
 import { Bounce, ToastContainer } from "react-toastify";
 import "chartjs-adapter-date-fns";
 import { SpeedInsights } from "@vercel/speed-insights/react"
-
+import { Analytics } from "@vercel/analytics/react"
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
       <WagmiConfigProvider>
         <SpeedInsights/>
+        <Analytics/>
         <ToastContainer
           position="top-right"
           autoClose={5000}
