@@ -15,6 +15,7 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
       <WagmiConfigProvider>
+        <SpeedInsights/>
         <ToastContainer
           position="top-right"
           autoClose={5000}
