@@ -98,7 +98,7 @@ export function useTokenInfo(tokenAddress, userAddress) {
           symbol: symbol.data,
           decimal: decimals.data,
           balance: formattedBalance,
-          totalSupply: totalSupply.data,
+          totalSupply: formatUnits(totalSupply.data, Number(decimals.data)),
         });
 
         setIsLoadingToken(false);
