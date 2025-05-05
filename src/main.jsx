@@ -8,6 +8,7 @@ import { WagmiConfigProvider } from "@/providers/wagmi.jsx";
 import RootLayout from "./layouts/Layout.jsx";
 import { Bounce, ToastContainer } from "react-toastify";
 import "chartjs-adapter-date-fns";
+import { SpeedInsights } from "@vercel/speed-insights/react"
 
 
 createRoot(document.getElementById("root")).render(

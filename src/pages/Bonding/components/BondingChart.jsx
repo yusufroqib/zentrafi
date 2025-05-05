@@ -32,7 +32,7 @@ import {
 	BONDING_POOL_ABI,
 	PHAROS_BONDING_CONTRACT_ADDRESS,
 } from "@/utils/ABI/BondingPool";
-import { Contract, parseEther } from "ethers";
+import { Contract, formatUnits, parseEther } from "ethers";
 // Helper function to format numbers
 function formatNumber(num) {
 	console.log({ num });
@@ -144,7 +144,7 @@ export function BondingTradingChart({
 
 	const account = useAccount();
 	const { address } = useAccount();
-	const chainSymbol = account?.chain?.nativeCurrency.symbol || "ETH";
+	const chainSymbol = account?.chain?.nativeCurrency.symbol || "PTT";
 	const userAddress = account?.address;
 	const [chartData, setChartData] = useState(initialData || []);
 	const [isLoading, setIsLoading] = useState(true);
@@ -193,7 +193,7 @@ export function BondingTradingChart({
 			if (!address) return;
 			try {
 				const balanceData = await getBalance(config, { address });
-				setNativeBalance(balanceData?.formatted); // Or .value if you want raw BigInt
+				setNativeBalance(Number(balanceData?.formatted).toFixed(4)); 
 			} catch (err) {
 				console.error("Failed to fetch balance:", err);
 				setNativeBalance("0");
@@ -600,6 +600,7 @@ export function BondingTradingChart({
 		}
 
 		try {
+			console.log("before")
 			const bondingPoolContract = new Contract(
 				PHAROS_BONDING_CONTRACT_ADDRESS,
 				BONDING_POOL_ABI,
@@ -611,26 +612,27 @@ export function BondingTradingChart({
 			const proofHex = supraResponse.data;
 			console.log({ proofHex });
 			const amountValue = Number.parseFloat(amount);
-
+			
 			const swapType = tradeTab === "buy" ? 1 : 2;
-
+			
 			const valueToSend = tradeTab === "buy" ? parseEther(amountValue.toString()) : 0;
-
+			
 			const contractData = initialData || contractInfo;
 			const tokenDecimals =
-				contractData?.decimal || contractData?.poolInfo?.decimals || 18;
-
+			contractData?.decimal || contractData?.poolInfo?.decimals || 18;
+			
 			const tokenAmount =
 				tradeTab === "sell"
 					? parseUnits(amount.toString(), tokenDecimals).toString()
 					: "0";
-			// const res=    await bondingPool.swap()
-			//--------------------------------------
-			const txData = bondingPoolContract.interface.encodeFunctionData("swap", [
-				tradeTab === "buy" ? 0 : tokenAmount,
-				swapType,
-				proofHex,
-			]);
+					// const res=    await bondingPool.swap()
+					//--------------------------------------
+					const txData = bondingPoolContract.interface.encodeFunctionData("swap", [
+						tradeTab === "buy" ? 0 : tokenAmount,
+						swapType,
+						proofHex,
+					]);
+					console.log("after")
 			//     // // Estimate gas
 			// const gasEstimate = await readOnlyProvider.estimateGas({
 			// 	from: address,
@@ -681,10 +683,17 @@ export function BondingTradingChart({
 				try {
 					// This would be replaced with your actual token balance fetching logic
 					// For now, we'll use a simulated balance based on circulating supply
-					const circulatingSupply =
-						Number.parseFloat(contractData.circulatingSupply) || 0;
-					const simulatedBalance = circulatingSupply * 0.001;
-					setTokenBalance(simulatedBalance.toFixed(5));
+					// const bal
+					const balanceData = await getBalance(config, { address, token: initialData.poolInfo.tokenAddress });
+					console.log({ tokenAddress: initialData.poolInfo.tokenAddress})
+					console.log({ balanceData })
+					const formattedBalance = Number(balanceData?.formatted).toFixed(5);
+					setTokenBalance(formattedBalance)
+
+					// const circulatingSupply =
+					// 	Number.parseFloat(contractData.circulatingSupply) || 0;
+					// const simulatedBalance = circulatingSupply * 0.001;
+					// setTokenBalance(simulatedBalance.toFixed(5));
 				} catch (error) {
 					console.error("Error fetching token balance:", error);
 					setTokenBalance("0");
@@ -1170,7 +1179,7 @@ export function BondingTradingChart({
 										/>
 										<div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex items-center">
 											<span className="text-white font-medium">
-												{tradeTab === "buy" ? chainSymbol : "ZTR"}
+												{tradeTab === "buy" ? chainSymbol : initialData?.poolInfo?.symbol}
 											</span>
 										</div>
 									</div>
@@ -1212,12 +1221,12 @@ export function BondingTradingChart({
 								<div className="flex items-center justify-between text-sm">
 									<span className="text-[#97CBDC]">Balance:</span>
 									<span className="text-white">
-										{tradeTab === "buy"
+										{tradeTab === "sell"
 											? `${tokenBalance} ${
 													initialData?.poolInfo?.symbol || "ZTR"
 											  }`
 											: `${nativeBalance || 0} ${
-													account?.chain?.nativeCurrency?.symbol || "ETH"
+													account?.chain?.nativeCurrency?.symbol || "PTT"
 											  }`}
 									</span>
 								</div>

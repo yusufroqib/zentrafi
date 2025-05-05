@@ -41,8 +41,8 @@ export default function LaunchHeader() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
-              Create & Launch a token in one transaction for 0.0003{" "}
-              {account?.chain?.nativeCurrency.symbol || "ETH"}. Fixed supply of
+              Create & Launch a token in one transaction for 0.15{" "}
+              {account?.chain?.nativeCurrency.symbol || "ZTR"}. Fixed supply of
               1 billion tokens with 1% to your Dev wallet. Users can trade &
               withdraw on the bonding curve until the market cap is reached.
               Auto-listed on a V3 DEX at $6.9k with LP burned.

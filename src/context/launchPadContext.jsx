@@ -5,7 +5,7 @@ import {
 	useEffect,
 	useState,
 } from "react";
-import { Contract, ethers, Interface } from "ethers";
+import { Contract, ethers, formatEther, Interface } from "ethers";
 // import ABI from "../ABI/pool.json";
 import usePoolManagerContract from "@/hooks/usePoolManagerContract";
 import useEthersProvider from "@/hooks/useEthersProvider";
@@ -55,7 +55,6 @@ export const LaunchPadContextProvider = ({ children }) => {
 		const bondingPoolItf = new Interface(BONDING_POOL_ABI);
 
 		try {
-			
 			const allFairPools = await readOnlyPoolManagerContract.getAllFairPools();
 			// console.log({allFairPools})
 			const allBondingPools =
@@ -74,13 +73,13 @@ export const LaunchPadContextProvider = ({ children }) => {
 
 			/**
  *   returns (
-            address, //Token
-            address, //Currency
-            uint8[3] memory state,
+           0 address, //Token
+           1 address, //Currency
+           2 uint8[3] memory state,
                     state[0] = uint8(poolState);
                     state[1] = uint8(poolType);
                     state[2] = IERC20Metadata(token).decimals();
-            uint256[11] memory info,
+           3 uint256[11] memory info,
                     info[0] = startTime;
                     info[1] = endTime;
                     info[2] = totalRaised;
@@ -92,12 +91,12 @@ export const LaunchPadContextProvider = ({ children }) => {
                     info[8] = auditStatus == true ? 1 : 0;
                     info[9] = liquidityPercent;
                     info[10] = liquidityUnlockTime;
-            string memory name,
-            string memory symbol,
-            string memory pooldetails,
-            uint256 routerVersion,
-            uint256 tokenId,
-            address v3pair
+           4 string memory name,
+           5 string memory symbol,
+           6 string memory pooldetails,
+           7 uint256 routerVersion,
+           8 uint256 tokenId,
+           9 address v3pair
         )
 
  */
@@ -164,7 +163,9 @@ export const LaunchPadContextProvider = ({ children }) => {
 					startTime: startTime,
 					startTimeRaw: startTimeRaw,
 					featured: false,
-					participants: '',
+					participants: "",
+					symbol: fairPools[5],
+					totalRaised: formatEther(totalRaised),
 				};
 			});
 			/**

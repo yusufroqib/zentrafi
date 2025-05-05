@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { useBondingContract } from "@/hooks/useBondingContract";
 import { useAccount } from "wagmi";
+import { toast } from "react-toastify";
 
 export default function BondingChartPage() {
 	const { bondingAddress } = useParams();
@@ -25,6 +26,18 @@ export default function BondingChartPage() {
 
 	const toggleFavorite = () => {
 		setIsFavorite(!isFavorite);
+	};
+
+	const copyToClipboard = (address) => {
+		navigator.clipboard
+			.writeText(address)
+			.then(() => {
+				toast.success("Address copied to clipboard");
+			})
+			.catch((err) => {
+				console.error("Failed to copy address: ", err);
+				toast.error("Failed to copy address");
+			});
 	};
 
 	const shareChart = () => {
@@ -247,6 +260,30 @@ export default function BondingChartPage() {
 					{/* Social Links */}
 					{(website || twitter || telegram || discord) && (
 						<div className="mt-6 pt-4 border-t border-[#475B74]/30">
+							<div className="flex gap-3 font-sm mb-2">
+								<h4>ContractAddress: </h4>
+								<button
+									onClick={() => copyToClipboard(bondingAddress)}
+									className="text-[#97CBDC] hover:text-white cursor-copy transition-colors flex items-center"
+									title="Click to copy full address"
+								>
+									{bondingAddress}
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										className="h-3.5 w-3.5 ml-1 opacity-70"
+										fill="none"
+										viewBox="0 0 24 24"
+										stroke="currentColor"
+									>
+										<path
+											strokeLinecap="round"
+											strokeLinejoin="round"
+											strokeWidth={2}
+											d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+										/>
+									</svg>
+								</button>
+							</div>
 							<h3 className="text-[#97CBDC] text-sm mb-3">Links</h3>
 							<div className="flex flex-wrap gap-3">
 								{website && (
