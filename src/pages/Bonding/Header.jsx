@@ -45,7 +45,7 @@ export default function LaunchHeader() {
               {account?.chain?.nativeCurrency.symbol || "ZTR"}. Fixed supply of
               1 billion tokens with 1% to your Dev wallet. Users can trade &
               withdraw on the bonding curve until the market cap is reached.
-              Auto-listed on a V3 DEX at $6.9k with LP burned.
+              Auto-listed on the Zentraswap V3 DEX at $6.9k with LP burned.
             </motion.p>
 
             {/* <motion.div
