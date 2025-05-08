@@ -8,17 +8,18 @@ import {
 import { Contract, ethers, formatEther, formatUnits, Interface } from "ethers";
 import useEthersProvider from "@/hooks/useEthersProvider";
 import { FAIR_POOL_ABI } from "@/utils/ABI/FairPool";
-
+import { gql, useQuery } from '@apollo/client';
+import { apolloClient } from '@/lib/apolloClient';
 import { useAccount } from "wagmi";
 import useFairPoolContract from "@/hooks/useFairPoolContract";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-const BLOCKSCOUT_API = "https://pharosscan.xyz/api";
+const BLOCKSCOUT_API = "https://devnet.pharosscan.xyz/api";
 const multicall3Addr = "0x3308CC3B0b2fCD4E9994E210A8290649d61360D7";
 const multicallAbi = [
 	"function tryAggregate(bool requireSuccess, (address target, bytes callData)[] calls) returns ((bool success, bytes returnData)[] returnData)",
 ];
-export const FairPoolContext = createContext({
+ const FairPoolContext = createContext({
 	participants: [],
 	token: {},
 	loading: true,
@@ -27,8 +28,20 @@ export const FairPoolContext = createContext({
 	owner: null,
 });
 
+const GET_POOL_DETAILS = gql`
+   {
+	bondingTokenCreateds {
+	  creator
+	  token
+	  timestamp_
+	  contractId_
+	}
+  }
+`;
+
+
 export const FairPoolContextProvider = ({ children }) => {
-	const { address } = useAccount();
+	// const { address } = useAccount();
 	const { contractAddress } = useParams();
 
 	// const poolFactoryContract = usePoolFactoryContract(true);
@@ -39,6 +52,8 @@ export const FairPoolContextProvider = ({ children }) => {
 	const [token, setToken] = useState({});
 	const [loading, setLoading] = useState(true);
 	const [owner, setOwner] = useState(null);
+	// const { loading: isLoading, error, data } = useQuery(GET_POOL_DETAILS, { client: apolloClient });
+	// console.log({ theFetchedDAta:data });
 
 	const getUniqueContributors = useCallback((participants) => {
 		return [
@@ -112,6 +127,7 @@ export const FairPoolContextProvider = ({ children }) => {
 		}
 		const fetchPoolDetails = async () => {
 			try {
+
 				const latestBlock = await getLatestBlock();
 				console.log({ latestBlock });
 				const eventSignature = ethers.id(
@@ -127,7 +143,7 @@ export const FairPoolContextProvider = ({ children }) => {
 						topic0: eventSignature,
 					},
 				});
-				console.log({ data });
+				// console.log({ data });
 
 				const participants = [];
 

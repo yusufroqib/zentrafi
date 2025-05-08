@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@apollo/client": "^3.13.8",
     "@dicebear/avataaars": "^9.2.2",
     "@dicebear/collection": "^9.2.2",
     "@dicebear/core": "^9.2.2",
@@ -41,6 +42,7 @@
     "date-fns": "^3.6.0",
     "ethers": "^6.13.5",
     "framer-motion": "^12.6.5",
+    "graphql": "^16.11.0",
     "lucide-react": "^0.484.0",
     "prop-types": "^15.8.1",
     "react": "^19.0.0",
