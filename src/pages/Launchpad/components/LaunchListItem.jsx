@@ -137,7 +137,7 @@ export function LaunchListItem({ launch, isHovered }) {
                 <span className="text-xs text-[#97CBDC]">Total Raised</span>
               </div>
               <p className="text-sm font-semibold text-[#DDEEFF]">
-                {launch.totalRaised || "0"} ETH
+                {launch.totalRaised || "0"} PTT
               </p>
             </div>
 

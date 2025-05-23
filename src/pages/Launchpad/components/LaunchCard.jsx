@@ -16,7 +16,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 export function LaunchCard({ launch, isHovered }) {
 	const account = useAccount();
-	const symbol = account?.chain?.nativeCurrency?.symbol || "ETH";
+	const symbol = account?.chain?.nativeCurrency?.symbol || "PTT";
 	const navigate = useNavigate();
 	const getStatusColor = () => {
 		switch (launch?.status) {

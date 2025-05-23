@@ -178,7 +178,7 @@ export default function LiquidityRewardsForm({
 
         <div className="mt-4 text-sm text-[#97CBDC]">
           The token you would like users to receive their rewards in. This can
-          be your Project Token or ETH/BNB if you use a V2 DEX.
+          be your Project Token or PTT if you use a V2 DEX.
           {formState.dexRouter === "ZENTRA-v3" &&
             formState.rewardsToken !== "project-token" && (
               <div className="mt-2 text-red-400 flex items-start">

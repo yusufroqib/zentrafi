@@ -14,7 +14,7 @@ export default function FairLaunchStepInfo() {
   const { formData, updateFormData } = useLaunch();
   const [debouncedTokenAddress, setDebouncedTokenAddress] = useState("");
   const [error, setError] = useState("");
-  const symbol = account?.chain?.nativeCurrency?.symbol || "ETH";
+  const symbol = account?.chain?.nativeCurrency?.symbol || "PTT";
 
   // Set up debounced token address for better UX
   useEffect(() => {

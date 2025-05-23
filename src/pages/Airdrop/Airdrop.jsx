@@ -467,7 +467,7 @@ export default function AirdropPage() {
                 <div className="flex items-center mb-4 md:mb-0">
                   <span className="text-[#97CBDC]">Total cost:</span>
                   <span className="text-xl font-bold bg-gradient-to-r from-[#018ABD] to-[#97CBDC] bg-clip-text text-transparent ml-2">
-                    0.002 {account.chain?.nativeCurrency?.symbol || "ETH"}
+                    0.002 {account.chain?.nativeCurrency?.symbol || "PTT"}
                   </span>
                 </div>
                 <motion.button
