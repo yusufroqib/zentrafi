@@ -987,7 +987,7 @@ export default function LandingPage() {
         </section>
 
         {/* Team Section */}
-        <section id="team" className="py-16 md:py-20 px-4">
+        {/* <section id="team" className="py-16 md:py-20 px-4">
           <div className="container mx-auto max-w-7xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -1078,7 +1078,7 @@ export default function LandingPage() {
               ))}
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* Key Features Section */}
         <section className="py-16 md:py-20 px-4">
